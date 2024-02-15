@@ -27,18 +27,15 @@
 </head>
 <body>
   <div class="page">
-    <form method="POST" class="formCalculo">
-    <h1>Dados para o Cálculo</h1>  
-    <label for="peso">Peso (kg):</label>
-    <input type="number" id="peso"><br><br>
-    <label for="altura">Altura (m):</label>
-    <input type="number" id="altura"><br><br>
-    <button onclick="calcularIMC()">Calcular IMC</button><br><br>
-    <h1>Resultado</h1>  
-    <div id="resultado">
-      
-    </div>
-  </form>
+    <form class="formCalculo">
+       
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura"><br><br>
+         <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso">
+    </form> 
+    <button onclick="calcularIMC()">Calcular IMC</button><br><br><br>
+    <div id="resultado" ></div><br>
 </div>
 </body>
 </html>
@@ -59,32 +56,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular</title>
     <link rel="stylesheet" href="./index.css">
-
-    <script>
-      function validarCampos() {
-          var Peso = document.getElementById("Peso").value;
-          var Altura = document.getElementById("Altura").value;
-  
-          // Validar se os campos estão preenchidos
-          if (Peso === "" || Altura === "") {
-              alert("Por favor, preencha ambos os campos.");
-              return;
-          }
-  
-          // Chame a função para mostrar o resultado
-          mostrarResultado(Peso, Altura);
-      }
-  
-      function mostrarResultado(Peso, Altura) {
-          // Aqui você pode fazer o que quiser com os valores dos campos,
-          // como calcular algo e exibir o resultado na tela
-
-          let imc = (parseInt(Peso)/(parseInt(Altura)**2))
-          Math.round(imc);
-
-          document.getElementById("imc").innerText = "O resultado do calculo é: " + imc;
-      }
-  </script>
+    
   </head>
 
   <body>
