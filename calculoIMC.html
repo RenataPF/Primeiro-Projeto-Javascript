@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cálculo IMC</title>
+<title>Calculadora de IMC</title>
 <script>
     function calcularIMC() {
         // Obter os valores de peso e altura inseridos pelo usuário
@@ -17,89 +17,80 @@
         }
 
         // Calcular o IMC (peso dividido pelo quadrado da altura)
-        var imc = peso / (altura * altura);
-     
+        var imc = ((peso / (altura **2)) * 10000).toFixed(2);
+
         // Exibir o resultado do cálculo na tela
-        document.getElementById("resultado").innerText = "Seu IMC é: " + imc.toFixed(5);
+        var resultadoIMC = document.querySelector(".imc");
+        resultadoIMC.textContent = 'Seu IMC é: ' + imc;
+        
+        var classificacao = document.querySelector('.classificacao');
+        classificacao.textContent = classificadorImc(imc);
+
     }
+    function classificadorImc(imc){
+    var classificacao = "nada" ;
+
+    if(imc < 15.99){
+        classificacao = "Classificação: Magreza Grave";
+    }
+    if(imc >= 16 && imc <= 16.99){
+        classificacao = "Classificação: Magreza Moderada";
+    } 
+    if(imc >= 17 && imc <= 18.5){
+        classificacao = "Classificação: Magreza Leve";
+    }
+    if(imc >= 18.5 && imc <= 24.9){
+        classificacao = "Classificação: Saudável";
+    }
+    if(imc >= 25 && imc <= 29.9){
+        classificacao = "Classificação: Sobrepeso";
+    }
+    if(imc >= 30 && imc <= 34.9){
+        classificacao = "Classificação: Obesidade Grau 1";
+    }
+    if(imc >= 35 && imc <= 39.9){
+        classificacao = "Classificação: Obesidade Grau 2 (Severa)";
+    }
+    if(imc >= 40){
+        classificacao = "Classificação: Obesidade Grau 3 (Mórbida)";
+    }
+    return classificacao
+}
+function limparCampos() {
+    var peso = parseFloat(document.getElementById("peso").value);
+    var altura = parseFloat(document.getElementById("altura").value);
+    if ( peso > 0 || altura > 0) {
+         alert("Os campos Altura e Peso serão restaurados.");
+            return(0);   
+         
+        }
+  
+}
 </script>
-<link rel="stylesheet" href="./index.css">
 </head>
 <body>
-  <div class="page">
+<div class="page">
     <form class="formCalculo">
-       
+       <h1> Insira os dados para o Cálculo</h1>
         <label for="altura">Altura (m):</label>
         <input type="number" id="altura"><br><br>
          <label for="peso">Peso (kg):</label>
         <input type="number" id="peso">
     </form> 
-    <button onclick="calcularIMC()">Calcular IMC</button><br><br><br>
-    <div id="resultado" ></div><br>
-</div>
+    <button onclick="calcularIMC()">Calcular IMC</button><br>
+    <form class="resultado">
+        <h1 > Resultado</h1>
+       <span class="imc">Calcule seu IMC.</span>
+       <span class="classificacao">Resultado aqui!</span>
+    </form> 
+    <div>
+    <a class="limpar" href="https://renatapf.github.io/Primeiro-Projeto-Javascript/menu.html" style="text-decoration:none;">Voltar</a>
+    
+     <button class="limpar" onclick="limparCampos()">Novo Cálculo</button>
+    </div>
+           
+   
+    
+         
 </body>
 </html>
-
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>
-<html lang="pt-BR">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcular</title>
-    <link rel="stylesheet" href="./index.css">
-    
-  </head>
-
-  <body>
-    <div class="page">
-      <form method="POST" class="formCalculo">
-      <h1>Dados para o Cálculo</h1>        
-        <label for="peso">Peso</label>
-        <input type="peso" placeholder="Digite seu peso">
-        <label for="altura">Altura</label>
-        <input type="altura" placeholder="Digite sua altura">
-
-        <label for="Peso">Peso</label>
-        <input type="text" id="Peso"><br><br>
-        <label for="Altura">Altura</label>
-        <input type="text" id="Altura"><br><br>
-        
-        
-        
-         <div>
-           <!-- <div>
-
-              <button onclick="validarCampos()">Calcular</button><br><br>
-             <!-- <a class="button" href="#" style="float: right; border:1px solid; padding: 11px 21px; vertical-align: middle; background:#c5c5ff; color:#5e17eb;border-radius:6px; font-size: 20px; font-family:helvetica, serif;text-decoration:none;">Calcular</a></div>
-             <div id="resultado"></div>
-            </div>
-      </form>
-
-      <form method="GET" class="formResultado">
-        <h1>Resultado</h1>        
-          <label for="peso">Seu IMC é</label>
-          <input type="peso" placeholder="">
-          <label for="altura">Classificação</label>
-          <input type="altura" placeholder="">
-          
-          
-           <div>
-              <div>
-                <a class="button" href="https://renatapf.github.io/Primeiro-Projeto-Javascript/menu.html" style="float: left; border:1px solid; padding: 11px 21px; vertical-align: middle; background:#38b6ff; color:#5e17eb;border-radius:6px; font-size: 20px; font-family:helvetica, serif;text-decoration:none;">Voltar</a></div>
-            </div>
-        </form>
-    </div>
-   
-
-  </body>
-
-</html>-->
